@@ -7,11 +7,11 @@ This project presents an intelligent, end-to-end system that leverages deep lear
 
 ## 📌 Project Workflow
 
-1. ✅ **Classify RF signals** using a trained CLDNN model (Conv1D + LSTM + Dense layers).
-2. ✅ **Generate synthetic I/Q samples** dynamically based on predicted modulation.
-3. ✅ **Transmit the I/Q samples** to another system using UDP protocol.
-4. ✅ **Receive and visualize the I/Q constellation** using a Python GUI.
-5. ✅ **Evaluate modulation effectiveness** using signal plots and prediction validation.
+1.  **Classify RF signals** using a trained CLDNN model (Conv1D + LSTM + Dense layers).
+2.  **Generate synthetic I/Q samples** dynamically based on predicted modulation.
+3.  **Transmit the I/Q samples** to another system using UDP protocol.
+4.  **Receive and visualize the I/Q constellation** using a Python GUI.
+5.  **Evaluate modulation effectiveness** using signal plots and prediction validation.
 
 ---
 
@@ -27,9 +27,9 @@ The dataset contains:
 
 ## 🪧 Data Preprocessing
 
-- ✅ Normalize I/Q samples per sample.
-- ✅ Encode modulation labels using `LabelEncoder`.
-- ✅ Train-validation-test split (e.g., 70-15-15).
+-  Normalize I/Q samples per sample.
+-  Encode modulation labels using `LabelEncoder`.
+-  Train-validation-test split (e.g., 70-15-15).
 
 ---
 
@@ -85,18 +85,6 @@ The dataset contains:
 - Auto-tuning of hyperparameters.
 - AI-guided modulation adaptation based on channel conditions.
 - SNR estimation + BER evaluation module.
-
----
-
-## 📅 Repo Structure
-```
-|-- cldnn.ipynb                 # Model training + testing
-|-- receiver.py                # UDP GUI receiver with plot
-|-- RML2016.10a.tar.bz2        # Dataset (compressed)
-|-- udp_receiver_gui.py        # GUI-based listener
-|-- model/cldnn_model.h5       # Saved model
-|-- utils/synthetic_generator.py
-```
 
 ---
 
