@@ -1,104 +1,109 @@
-# **📡 RF Modulation Classification & Communication System Simulation**
+# 📡 RF Modulation Classification & Communication System Simulation
 
-🚀 **Bridging Machine Learning & Wireless Communication!** 🚀\
-This project fuses **deep learning** with **real-time RF communication**, creating an intelligent system that **classifies RF signals and transmits synthetic I/Q data dynamically**. From **CNN-based modulation recognition** to **wireless data transmission**, this work explores the future of cognitive radio and adaptive communications.
-
----
-
-## **📌 Project Overview**
-
-This project follows a structured approach:
-
-1️⃣ **Classify RF signals** using deep learning (CNN model trained on RadioML 2018.01A dataset of 18GB).\
-2️⃣ **Generate synthetic I/Q samples** in MATLAB for transmission.\
-3️⃣ **Dynamically select modulation schemes based on the classified signal output to optimize transmission.**\
-4️⃣ Transmit & receive modulated RF signals between two systems. \
-5️⃣ **Apply modulation, encoding, and decoding** to reconstruct transmitted data.
-
-🔹 **Applications:** Adaptive modulation, cognitive radio, IoT, and secure wireless networks.
+## 🚀 Bridging Deep Learning & Wireless Communication
+This project presents an intelligent, end-to-end system that leverages deep learning to classify RF modulation schemes and transmit synthetic I/Q data in real time. Using a CLDNN model trained on the **RadioML 2016.10A** dataset, the system dynamically predicts modulation types and transmits newly generated signals via UDP between devices. It brings together communication theory, signal processing, and neural networks to simulate the future of **cognitive radio** and **adaptive wireless systems**.
 
 ---
 
-## **📂 Dataset: [RadioML 2018.01A](https://f002.backblazeb2.com/file/deepsig-datasets/2018.01/2018.01.OSC.0001_1024x2M.h5.tar.gz?Authorization=3_20250307172457_4c985cf1a825131c9e63406e_7c912e72741a8c9ca16e3d7a466674b54efc1d15_002_20250307182457_0042_dnld)**
+## 📌 Project Workflow
 
-📊 **Dataset Includes:**
-
-- **2 million samples of 1024-length I/Q data** representing modulated RF signals.
-- **Modulation labels** (BPSK, QPSK, 8PSK, 16QAM, 64QAM, etc.).
-- **Various SNR levels**, simulating real-world wireless conditions.
-
-🛠 **Preprocessing Steps:**
-
-✅ Normalization of I/Q data.\
-✅ Label encoding for deep learning models.\
-✅ Splitting into training, validation, and test sets.
+1. ✅ **Classify RF signals** using a trained CLDNN model (Conv1D + LSTM + Dense layers).
+2. ✅ **Generate synthetic I/Q samples** dynamically based on predicted modulation.
+3. ✅ **Transmit the I/Q samples** to another system using UDP protocol.
+4. ✅ **Receive and visualize the I/Q constellation** using a Python GUI.
+5. ✅ **Evaluate modulation effectiveness** using signal plots and prediction validation.
 
 ---
 
-## **🧠 Deep Learning for RF Classification**
+## 📂 Dataset: RadioML 2016.10A
 
-🎯 **Why CNNs?**
-
-- Extracts key features from I/Q sequences.
-- Handles noisy RF signals efficiently.
-- Enables real-time classification with high accuracy.
-
-📌 **Training Workflow:**
-
-1️⃣ Train a **1D CNN** on RadioML 2018.01A.\
-2️⃣ Export the trained model in **ONNX format** for MATLAB integration.\
-3️⃣ Use the model to classify real or simulated RF signals.
+The dataset contains:
+- 220,000 samples of RF signals.
+- Each sample is a 2×128 array (In-phase and Quadrature).
+- Modulations: BPSK, QPSK, 8PSK, 16QAM, 64QAM, CPFSK, GFSK, PAM4, etc.
+- SNR range: -20 dB to +18 dB.
 
 ---
 
-## **📡 Generating Synthetic I/Q Data**
+## 🪧 Data Preprocessing
 
-📌 **Why Generate New Data?**
-
-- The classification model **does not reuse input signals for transmission**.
-- Instead, we create **fresh I/Q samples** to modulate and send new messages.
-
-🔹 **Steps:**
-
-✅ Generate **random binary data**.
-
-✅ Convert to **I/Q format** based on modulation type.
-
-✅ Structure data for **RF transmission**.
+- ✅ Normalize I/Q samples per sample.
+- ✅ Encode modulation labels using `LabelEncoder`.
+- ✅ Train-validation-test split (e.g., 70-15-15).
 
 ---
 
-## **📡 Transmission Between Two Laptops**
+## 🧐 Deep Learning Model: CLDNN
+**CLDNN (Convolutional + LSTM + Dense Neural Network)** is used for effective time-domain signal classification.
 
-1️⃣ **Software-Based Transmission (TCP/UDP)**: Send modulated I/Q data over a network.
+### Architecture:
+- `Conv1D` layers to extract temporal features.
+- `BatchNormalization` to stabilize training.
+- `LSTM` to capture sequence dependencies.
+- `Dense` layers with dropout for classification.
 
-🔹 **Key Components:**
+### Output:
+- Trained to classify 8–11 modulation types.
+- Accuracy ~63% (baseline, tunable).
 
-✅ **Sender:** Modulates & transmits RF signals.
-
-✅ **Receiver:** Receives & demodulates signals to extract original data.
-
-✅ **Noise Simulation:** Introduces **AWGN & fading** to mimic real-world conditions.
-
----
-
-## **🎯 Modulation, Encoding & Decoding**
-
-📌 **The Heart of Wireless Communication!**
-
-- **Modulation:** Converts bits to RF signals (BPSK, QPSK, 16-QAM, etc.).
-- **Encoding:** Maps bits into symbols for error resilience.
-- **Decoding & Demodulation:** Recovers transmitted data at the receiver.
-- **BER Analysis:** Computes Bit Error Rate to measure transmission quality.
+### Export:
+- Model saved as `.h5` and converted to `.onnx` for cross-platform deployment.
 
 ---
 
-## **🚀 Final Thoughts**
+## 🌌 Synthetic I/Q Data Generation
+- Generates new I/Q samples for: BPSK, QPSK, 8PSK, 16QAM, 64QAM, PAM4, GFSK, CPFSK.
+- Ensures no reuse of training input for transmission.
+- Power-normalized for consistency across modulation types.
 
-This project successfully integrates **deep learning-based RF classification** with **real-time transmission**, bridging the gap between **ML & communication systems**. Future enhancements include:
-✅ **Real SDR implementation** for live RF experiments.\
-✅ **More advanced modulation techniques** for high-efficiency transmission.\
-✅ **AI-driven adaptive modulation** based on channel conditions.
+---
 
-📢 **Let's redefine wireless communication with AI!**
+## 🚬 Real-time Communication via UDP
+
+### Sender:
+- Predicts modulation.
+- Generates synthetic I/Q.
+- Transmits via UDP to target IP.
+
+### Receiver:
+- Listens on specified port.
+- GUI built with `Tkinter + Matplotlib`.
+- Displays I/Q constellation on signal arrival.
+
+---
+
+## 🎡 Applications
+- Cognitive radio networks
+- IoT communication simulators
+- Secure wireless experimentation
+- Adaptive modulation switching
+
+---
+
+## 🚀 Future Enhancements
+- Real SDR (Software Defined Radio) hardware integration.
+- Auto-tuning of hyperparameters.
+- AI-guided modulation adaptation based on channel conditions.
+- SNR estimation + BER evaluation module.
+
+---
+
+## 📅 Repo Structure
+```
+|-- cldnn.ipynb                 # Model training + testing
+|-- receiver.py                # UDP GUI receiver with plot
+|-- RML2016.10a.tar.bz2        # Dataset (compressed)
+|-- udp_receiver_gui.py        # GUI-based listener
+|-- model/cldnn_model.h5       # Saved model
+|-- utils/synthetic_generator.py
+```
+
+---
+
+## 📚 License
+This project is licensed under the MIT License.
+
+---
+
+### 📢 Let's redefine wireless communication with AI!
 
